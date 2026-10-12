@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10251d">
+<title>NutriLens — Comprendre ses compléments</title>
+<style>
+:root{--ink:#172a22;--muted:#65766e;--bg:#f4f7f3;--paper:#fff;--green:#236a4b;--mint:#e6f4eb;--line:#dce6de;--amber:#fff4d9;--red:#fff0ed}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:radial-gradient(circle at 85% 15%,#315f48,transparent 36%),linear-gradient(135deg,#10251d,#183d2b);color:white;padding:26px 18px 34px}
+.wrap{max-width:900px;margin:auto}.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.02em}.mark{display:grid;place-items:center;width:38px;height:38px;background:#d6f2df;color:#184a32;border-radius:12px;font-size:22px}
+.tag{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#bfe7cc;font-weight:800;margin-top:24px}
+h1{font-size:clamp(32px,7vw,48px);line-height:1.02;letter-spacing:-.04em;margin:8px 0 12px;max-width:620px}header p{color:#d9e9df;max-width:590px;margin:0}
+main{max-width:900px;margin:-15px auto 0;padding:0 14px 34px}.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:19px;margin-bottom:14px;box-shadow:0 8px 26px #183d2b08}
+h2{font-size:19px;letter-spacing:-.02em;margin:0 0 12px}h3{font-size:16px;margin:17px 0 7px}
+.tabs{display:flex;gap:8px;overflow:auto;margin:0 0 14px}.tab{border:1px solid var(--line);border-radius:999px;padding:10px 14px;background:#fff;white-space:nowrap;color:var(--ink);font-weight:750}.tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+label{display:block;font-size:13px;font-weight:750;color:#465a4f;margin:12px 0 6px}
+input,select,textarea{width:100%;font:inherit;border:1px solid #cbd9ce;border-radius:11px;padding:12px;background:white;color:var(--ink)}
+button{font:inherit;cursor:pointer;font-weight:800;border:0;border-radius:12px;padding:13px 16px;background:var(--green);color:white}
+button.secondary{background:#eaf3ed;color:#20543b;border:1px solid #d4e5d9}
+button:focus,input:focus,select:focus,textarea:focus{outline:2px solid #83b99a;outline-offset:2px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.actions button{flex:1;min-width:140px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.result{background:#f7faf7;border:1px solid var(--line);border-radius:14px;padding:14px}.result strong{display:block;font-size:19px;margin:3px 0}.small{font-size:13px;color:var(--muted)}
+.pill{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:5px 9px;background:var(--mint);color:#20543b}
+.notice{padding:13px;border-radius:13px;background:var(--amber);color:#6c4d08;font-size:13px;margin-top:12px}.safe{padding:13px;border-radius:13px;background:var(--mint);color:#20543b;font-size:13px;margin-top:12px}
+.hidden{display:none!important}.producthead{display:flex;align-items:center;gap:12px}.producticon{width:52px;height:52px;display:grid;place-items:center;background:#e8f5eb;border-radius:16px;font-size:26px}
+hr{border:0;border-top:1px solid var(--line);margin:18px 0}footer{text-align:center;font-size:12px;color:var(--muted);padding:0 18px 28px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}header{padding-top:21px}.card{padding:16px}.actions{flex-direction:column}.actions button{width:100%}}
+</style></head>
+<body>
+<header><div class="wrap">
+<div class="brand"><span class="mark">✳</span><span>NutriLens</span><span style="font-size:11px;color:#c6e8d1">BÊTA</span></div>
+<div class="tag">Des compléments, en toute clarté</div>
+<h1>Avant d’acheter un supplément, comprenez-le.</h1>
+<p>Un guide simple pour décrypter les ingrédients, les doses, les preuves scientifiques et les précautions — sans promesses miracles.</p>
+</div></header>
+<main>
+<div class="tabs" role="tablist">
+<button class="tab active" data-tab="scanner">Analyser un produit</button>
+<button class="tab" data-tab="profil">Mon profil</button>
+<button class="tab" data-tab="guide">Guide rapide</button>
+</div>
+<section id="scanner" class="card">
+<div class="producthead"><div class="producticon">🔎</div><div><h2 style="margin-bottom:2px">Analyse express</h2><div class="small">Prototype interactif — choisissez un ingrédient ou saisissez une étiquette.</div></div></div>
+<label for="ingredient">Quel supplément voulez-vous comprendre ?</label>
+<select id="ingredient"><option value="creatine">Créatine monohydrate</option><option value="whey">Protéine whey</option><option value="vitd">Vitamine D</option><option value="magnesium">Magnésium</option><option value="omega3">Oméga-3</option><option value="ashwagandha">Ashwagandha</option><option value="caffeine">Caféine</option><option value="custom">Autre produit / étiquette</option></select>
+<div id="customBox" class="hidden"><label for="labelText">Copiez le nom, les ingrédients et le dosage indiqué</label><textarea id="labelText" rows="4" placeholder="Ex. Créatine monohydrate — 3 g par portion — autres ingrédients…"></textarea></div>
+<div class="grid">
+<div><label for="goal">Mon objectif</label><select id="goal"><option>Musculation / force</option><option>Récupération</option><option>Sommeil / stress</option><option>Santé générale</option><option>Énergie / concentration</option></select></div>
+<div><label for="context">Contexte à prendre en compte</label><select id="context"><option value="none">Aucune précaution déclarée</option><option value="meds">Je prends des médicaments</option><option value="condition">J’ai un problème de santé connu</option><option value="pregnant">Grossesse / allaitement</option><option value="under18">Moins de 18 ans</option></select></div>
+</div>
+<div class="actions"><button id="analyse">Afficher l’analyse</button><button class="secondary" id="reset">Réinitialiser</button></div>
+<div id="output" class="hidden" aria-live="polite"></div>
+<div class="notice">Cette bêta ne lit pas encore les photos ni les codes-barres et ne vérifie pas les lots de produits. L’analyse ci-dessous est un guide général, pas une recommandation médicale personnalisée.</div>
+</section>
+<section id="profil" class="card hidden">
+<h2>Mon profil — en local sur cet appareil</h2><p class="small">Un profil utile doit reposer sur des informations que vous choisissez de partager, pas sur une photo du visage ou du pouce.</p>
+<label for="age">Tranche d’âge</label><select id="age"><option>18–39 ans</option><option>40–64 ans</option><option>65 ans et plus</option><option>Moins de 18 ans</option></select>
+<label for="objective">Priorité principale</label><select id="objective"><option>Force et masse musculaire</option><option>Sommeil et stress</option><option>Énergie</option><option>Santé générale</option><option>Comprendre mes analyses biologiques</option></select>
+<label for="meds">Médicaments ou précautions (facultatif)</label><textarea id="meds" rows="3" placeholder="N’indiquez que ce que vous souhaitez conserver sur cet appareil."></textarea>
+<div class="safe">Les données saisies dans ce prototype ne sont pas envoyées à un serveur. Évitez d’y inscrire des informations médicales identifiantes.</div>
+<div class="actions"><button id="saveProfile">Enregistrer sur cet appareil</button><button class="secondary" id="clearProfile">Effacer le profil</button></div><p id="profileStatus" class="small" aria-live="polite"></p>
+</section>
+<section id="guide" class="card hidden">
+<h2>Comment lire un supplément ?</h2>
+<div class="result"><span class="pill">1 · Composition</span><strong>Quel ingrédient, quelle forme ?</strong><span class="small">Vérifiez la forme précise, la quantité par portion et les ingrédients ajoutés.</span></div><div style="height:9px"></div>
+<div class="result"><span class="pill">2 · Dose</span><strong>La quantité est-elle clairement indiquée ?</strong><span class="small">Comparez la dose quotidienne à celle étudiée dans des essais de qualité. Plus n’est pas forcément mieux.</span></div><div style="height:9px"></div>
+<div class="result"><span class="pill">3 · Preuves</span><strong>Le bénéfice est-il démontré ?</strong><span class="small">Distinguez les essais humains, les résultats préliminaires et les arguments marketing.</span></div><div style="height:9px"></div>
+<div class="result"><span class="pill">4 · Sécurité</span><strong>Interactions et contre-indications</strong><span class="small">La sécurité dépend du produit, de la dose et de votre situation. Demandez conseil à un professionnel en cas de maladie ou de médicament.</span></div>
+<div class="notice">Une application ne peut pas déterminer une carence fiable à partir d’une photo du visage, de la peau ou du pouce. Une carence peut nécessiter une évaluation clinique et des analyses adaptées.</div>
+</section>
+</main>
+<footer>NutriLens Bêta · Informations éducatives, non médicales. Les preuves et recommandations doivent être vérifiées et actualisées avant toute commercialisation.</footer>
+<script>
+const data={
+creatine:{name:"Créatine monohydrate",level:"Bon niveau de preuves pour certains usages",evidence:"La créatine monohydrate est bien étudiée pour améliorer les performances lors d’efforts répétés de haute intensité et soutenir les gains liés à l’entraînement en résistance.",check:"Recherchez « créatine monohydrate » et une quantité clairement indiquée. Les mélanges propriétaires rendent la dose difficile à vérifier.",caution:"Une maladie rénale, une grossesse, un âge inférieur à 18 ans ou un traitement médical justifient un avis professionnel avant utilisation.",score:"Preuves solides pour force et efforts intenses"},
+whey:{name:"Protéine whey",level:"Utile si l’apport en protéines est insuffisant",evidence:"Une poudre de whey peut aider à atteindre un apport protéique adapté. Elle n’est pas nécessaire si l’alimentation couvre déjà les besoins.",check:"Vérifiez les protéines par portion, les édulcorants et la présence de lactose ou d’allergènes. Les isolats contiennent souvent moins de lactose, sans garantie d’absence.",caution:"À éviter en cas d’allergie aux protéines du lait. En cas de maladie rénale ou de régime médical, demandez conseil.",score:"Utilité dépendante de l’alimentation"},
+vitd:{name:"Vitamine D",level:"Bénéfice établi en cas de besoin",evidence:"La vitamine D est essentielle à la santé osseuse. L’intérêt d’une supplémentation dépend notamment du statut, du risque de déficit et des recommandations locales.",check:"Regardez la dose en microgrammes (µg) ou unités internationales (UI) et évitez de cumuler plusieurs produits sans calculer l’apport total.",caution:"Des doses élevées peuvent être nocives. Un professionnel peut déterminer si une supplémentation ou une analyse est pertinente.",score:"Utile dans certaines situations"},
+magnesium:{name:"Magnésium",level:"Utile en cas d’apport insuffisant ou de besoin ciblé",evidence:"Le magnésium contribue à plusieurs fonctions normales de l’organisme. Les bénéfices supplémentaires pour le sommeil ou les crampes ne sont pas garantis chez tout le monde.",check:"Comparez la quantité de magnésium élémentaire, pas seulement le poids du composé. Les formes diffèrent en tolérance digestive.",caution:"Une insuffisance rénale augmente le risque d’accumulation. Le magnésium peut réduire l’absorption de certains médicaments : demandez conseil sur les horaires.",score:"Bénéfice variable selon le contexte"},
+omega3:{name:"Oméga-3",level:"Bénéfice dépendant de l’alimentation et du contexte",evidence:"Les oméga-3 EPA et DHA ont des fonctions physiologiques importantes. L’intérêt d’un complément dépend de l’apport alimentaire et de la situation clinique.",check:"Vérifiez la quantité réelle d’EPA et de DHA, pas seulement le poids total d’huile. Contrôlez la date, l’oxydation et la qualité documentée.",caution:"À fortes doses, les oméga-3 peuvent interagir avec certains traitements et nécessitent un avis médical, notamment en cas de risque de saignement.",score:"Lire EPA + DHA sur l’étiquette"},
+ashwagandha:{name:"Ashwagandha",level:"Preuves limitées à modérées selon l’usage",evidence:"Certains essais de petite taille suggèrent un effet possible sur le stress ou le sommeil, mais les produits et les études varient et les preuves restent limitées.",check:"Vérifiez l’espèce, la partie de plante, l’extrait standardisé et la dose. Évitez les mélanges dont les quantités ne sont pas précisées.",caution:"Des atteintes hépatiques rares ont été rapportées. Prudence en cas de trouble thyroïdien, maladie auto-immune, grossesse ou traitement : avis professionnel requis.",score:"Prudence — preuves encore limitées"},
+caffeine:{name:"Caféine",level:"Efficacité démontrée dans certains contextes",evidence:"La caféine peut améliorer temporairement la vigilance et certaines performances. La sensibilité varie fortement et la prise tardive peut perturber le sommeil.",check:"Calculez la caféine totale provenant de toutes les sources, y compris café, boissons énergisantes et pré-entraînements.",caution:"La prudence est particulièrement importante en cas d’anxiété, palpitations, hypertension, grossesse ou prise de médicaments. Évitez de la prendre près du coucher.",score:"Efficacité connue, tolérance individuelle"}
+};
+const $=id=>document.getElementById(id);
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));['scanner','profil','guide'].forEach(id=>$(id).classList.toggle('hidden',id!==b.dataset.tab));}));
+$('ingredient').addEventListener('change',()=>{$('customBox').classList.toggle('hidden',$('ingredient').value!=='custom');$('output').classList.add('hidden')});
+$('analyse').addEventListener('click',()=>{
+ const key=$('ingredient').value, d=data[key], context=$('context').value, goal=$('goal').value;
+ let html='';
+ if(d){html=`<div style="margin-top:18px"><span class="pill">Analyse générale</span><h2 style="margin:10px 0 4px">${d.name}</h2><div class="small">${d.score}</div><div class="result" style="margin-top:12px"><strong>${d.level}</strong>${d.evidence}</div><h3>À vérifier sur l’étiquette</h3><p>${d.check}</p><h3>Précautions</h3><p>${d.caution}</p><hr><div class="small">Objectif sélectionné : ${goal}. Cette sélection ne permet pas de conclure que le produit est personnellement adapté.</div></div>`}
+ else {const t=$('labelText').value.trim();html=`<div style="margin-top:18px"><span class="pill">Lecture limitée</span><h2 style="margin:10px 0">Produit non reconnu automatiquement</h2><p>${t?`Texte fourni : « ${t.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))} »`:'Ajoutez le nom et les ingrédients de l’étiquette.'}</p><p>Cette version ne dispose pas encore d’un catalogue de produits ni d’un lecteur de code-barres. Ne déduisez pas la qualité d’un produit à partir de son seul nom.</p></div>`}
+ if(context!=='none')html+=`<div class="notice">Vous avez indiqué : ${({'meds':'prise de médicaments','condition':'problème de santé connu','pregnant':'grossesse ou allaitement','under18':'moins de 18 ans'})[context]}. Cette bêta ne peut pas vérifier les interactions ni déterminer si le produit vous convient. Demandez conseil à un professionnel de santé avant de commencer.</div>`;
+ $('output').innerHTML=html;$('output').classList.remove('hidden');$('output').scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+$('reset').addEventListener('click',()=>{$('ingredient').value='creatine';$('goal').selectedIndex=0;$('context').value='none';$('labelText').value='';$('customBox').classList.add('hidden');$('output').classList.add('hidden')});
+$('saveProfile').addEventListener('click',()=>{try{localStorage.setItem('nutrilens_profile',JSON.stringify({age:$('age').value,objective:$('objective').value,meds:$('meds').value}));$('profileStatus').textContent='Profil enregistré sur cet appareil.'}catch(e){$('profileStatus').textContent='Enregistrement indisponible dans ce navigateur.'}});
+$('clearProfile').addEventListener('click',()=>{localStorage.removeItem('nutrilens_profile');$('age').selectedIndex=0;$('objective').selectedIndex=0;$('meds').value='';$('profileStatus').textContent='Profil effacé.'});
+try{const p=JSON.parse(localStorage.getItem('nutrilens_profile')||'null');if(p){$('age').value=p.age;$('objective').value=p.objective;$('meds').value=p.meds||''}}catch(e){}
+</script></body></html>
